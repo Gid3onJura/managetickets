@@ -8,6 +8,7 @@ async function bootstrap() {
     whitelist: true,
     //disableErrorMessages: true
   }))
+  app.enableCors();
   await app.listen(3333);
 }
 bootstrap();
