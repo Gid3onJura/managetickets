@@ -1,4 +1,5 @@
 import { Injectable } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
 import { TicketsDto } from "./dto";
 
 @Injectable({})
@@ -19,10 +20,17 @@ export class TicketsService {
     }
 
     constructor() { }
+
     newTicket(dto: TicketsDto) {
 
-        const savedTicket = this.saveTicket(dto);
-
+        try {
+            const savedTicket = this.saveTicket(dto);
+        }
+        catch (error) {
+            return {
+                message: error
+            }
+        }
         return {
             message: 'new ticket created'
         }
